@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pomodoro — Beautiful Timer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="A beautiful Pomodoro timer with themes and settings" />
+</head>
+<body class="theme-morning">
+  <div class="app">
+    <header class="header">
+      <h1 class="logo">Pomodoro</h1>
+      <div class="header-controls">
+        <button id="settings-btn" class="icon-btn" aria-expanded="false" aria-controls="settings">⚙️</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="timer-area" aria-live="polite">
+        <div class="timer-top">
+          <div id="session-indicator" class="session-indicator">Work</div>
+          <div id="progress-container" class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <div class="session-dots" id="session-dots" aria-hidden="true"></div>
+        </div>
+
+        <div class="timer-display" id="timer-display">
+          <span id="minutes">25</span>
+          <span class="colon">:</span>
+          <span id="seconds">00</span>
+        </div>
+
+        <div class="timer-controls">
+          <button id="start-pause" class="start-btn">Start</button>
+          <button id="skip" class="ghost-btn">Skip</button>
+          <button id="reset" class="ghost-btn">Reset</button>
+        </div>
+      </section>
+
+      <!-- Right side quotes for motivation and time management tips -->
+      <aside class="quote-area" id="quote-area" aria-live="polite" aria-atomic="true">
+        <div class="quote-card">
+          <blockquote id="quote-text">Time is what we want most, but what we use worst.</blockquote>
+          <cite id="quote-author">— William Penn</cite>
+        </div>
+      </aside>
+
+    </main>
+
+    <div class="settings-bg" id="settings-bg"></div>
+    <aside class="settings-area" id="settings" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="settings-inner">
+          <div class="settings-head">
+            <h2>Settings</h2>
+            <button id="settings-close" class="icon-btn" aria-label="Close settings">✖️</button>
+          </div>
+
+          <div class="setting-row">
+            <label>Work</label>
+            <div class="setting-input"><input id="work-min" type="number" min="1" max="180" value="25"/> <span>min</span></div>
+          </div>
+
+          <div class="setting-row">
+            <label>Short Break</label>
+            <div class="setting-input"><input id="short-min" type="number" min="1" max="60" value="5"/> <span>min</span></div>
+          </div>
+
+          <div class="setting-row">
+            <label>Long Break</label>
+            <div class="setting-input"><input id="long-min" type="number" min="1" max="120" value="15"/> <span>min</span></div>
+          </div>
+
+          <div class="setting-row">
+            <label>Sessions until long break</label>
+            <div class="setting-input"><input id="sessions-until-long" type="number" min="1" max="10" value="4"/></div>
+          </div>
+
+          <div class="setting-row">
+            <label>Auto start next</label>
+            <div class="setting-input"><input id="auto-start" type="checkbox"/></div>
+          </div>
+
+          <div class="setting-row">
+            <label>Theme</label>
+            <div class="setting-input">
+              <select id="theme-select">
+                <option value="morning">Morning</option>
+                <option value="night">Night</option>
+                <option value="mint">Mint</option>
+                <option value="lavender">Lavender</option>
+                <option value="sunrise">Sunrise</option>
+                <option value="ocean">Ocean</option>
+                <option value="forest">Forest</option>
+                <option value="rose">Rose</option>
+                <option value="dusk">Dusk</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <button id="save-settings" class="start-btn small">Save</button>
+            <button id="reset-settings" class="ghost-btn small">Reset</button>
+          </div>
+
+          <footer class="settings-footer">
+            <small>Saved to device • Responsive • Themes • Notifications</small>
+          </footer>
+        </div>
+      </aside>
+    </main>
+
+    <audio id="ding-audio" preload="auto"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
