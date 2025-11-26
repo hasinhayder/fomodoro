@@ -258,12 +258,6 @@ function pomodoroApp() {
         if (e.key === 'Escape') {
           this.closeSettings();
         }
-
-        // Toggle settings with Command+K or Control+K
-        if ((e.metaKey || e.ctrlKey) && e.code === 'KeyK') {
-          e.preventDefault();
-          this.toggleSettings();
-        }
       } catch (err) {
         console.warn('Keyboard handler error:', err);
       }
@@ -292,7 +286,10 @@ function pomodoroApp() {
       this.currentQuoteIndex = parseInt(localStorage.getItem('pomodoro-quote-index')) || 0;
       this.startQuoteRotation();
 
-      // Restore state
+      this.restoreState();
+      this.setupUnloadHandler();
+    },
+    restoreState() {
       try {
         const saved = JSON.parse(localStorage.getItem('pomodoro-state'));
         if (saved) {
@@ -300,16 +297,19 @@ function pomodoroApp() {
           if (saved.remainingSeconds) this.state.remainingSeconds = saved.remainingSeconds;
           if (saved.completedSessions) this.state.completedSessions = saved.completedSessions;
         }
-      } catch (e) { }
-
-      // Save state before unload
-      window.addEventListener('beforeunload', () => {
+      } catch (e) { /* storage unavailable */ }
+    },
+    setupUnloadHandler() {
+      window.addEventListener('beforeunload', () => this.saveState());
+    },
+    saveState() {
+      try {
         localStorage.setItem('pomodoro-state', JSON.stringify({
           mode: this.state.mode,
           remainingSeconds: this.state.remainingSeconds,
           completedSessions: this.state.completedSessions
         }));
-      });
+      } catch (e) { /* storage unavailable */ }
     }
   };
 }
