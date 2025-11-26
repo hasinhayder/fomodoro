@@ -11,7 +11,7 @@
 <body class="theme-morning" x-data="pomodoroApp()" x-init="init()" @keydown.window="handleGlobalKeydown($event)">
   <div class="app">
     <header class="header">
-      <h1 class="logo">Fomodoro</h1>
+      <h1 class="logo"><span class="logo-icon">🍅</span>Pomodoro</h1>
       <div class="header-controls">
         <button @click="toggleSettings()" class="icon-btn" :aria-expanded="settingsOpen" aria-controls="settings" title="Settings (Cmd+K/Ctrl+K)">⚙️</button>
       </div>

@@ -54,7 +54,24 @@ body::after {
 
 .app { display: flex; flex-direction: column; min-height: 100vh; }
 .header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; }
-.logo { margin: 0; font-weight: 700; letter-spacing: 1px; }
+.logo {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-icon {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
 .icon-btn {
   border: none;
   background: transparent;
