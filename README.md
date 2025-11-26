@@ -1,5 +1,7 @@
 # Fomodoro - Beautiful Timer
 
+[![GitHub](https://img.shields.io/badge/GitHub-View%20Source-181717?style=for-the-badge&logo=github)](https://github.com/hasinhayder/fomodoro)
+
 A simple Pomodoro timer built with HTML, CSS, and JS. The timer uses the full browser width to display a large, visually pleasing countdown. Includes a settings panel with theme switching, configurable durations (work/short/long), auto-start toggle, and sessions until long break.
 
 ## Features

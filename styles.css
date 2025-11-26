@@ -75,6 +75,10 @@ body::after {
   padding: 8px;
   border-radius: 10px;
   transition: background 0.15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .icon-btn:hover { background: var(--icon-hover-bg); }
 .icon-btn:focus { outline: 2px solid var(--accent); }
