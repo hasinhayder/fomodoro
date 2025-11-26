@@ -69,27 +69,22 @@
 
           <div class="setting-row">
             <label>Work</label>
-            <div class="setting-input"><input x-model="settings.work" type="number" min="1" max="180"/> <span>min</span></div>
+            <div class="setting-input"><input x-model="settings.work" type="number" min="1" max="180"/></div>
           </div>
 
           <div class="setting-row">
             <label>Short Break</label>
-            <div class="setting-input"><input x-model="settings.short" type="number" min="1" max="60"/> <span>min</span></div>
+            <div class="setting-input"><input x-model="settings.short" type="number" min="1" max="60"/></div>
           </div>
 
           <div class="setting-row">
             <label>Long Break</label>
-            <div class="setting-input"><input x-model="settings.long" type="number" min="1" max="120"/> <span>min</span></div>
+            <div class="setting-input"><input x-model="settings.long" type="number" min="1" max="120"/></div>
           </div>
 
           <div class="setting-row">
             <label>Sessions until long break</label>
             <div class="setting-input"><input x-model="settings.sessionsUntilLong" type="number" min="1" max="10"/></div>
-          </div>
-
-          <div class="setting-row">
-            <label>Auto start next</label>
-            <div class="setting-input"><input x-model="settings.autoStart" type="checkbox"/></div>
           </div>
 
           <div class="setting-row">
@@ -111,6 +106,11 @@
                 <option value="autumn">Autumn</option>
               </select>
             </div>
+          </div>
+
+          <div class="setting-row">
+            <label>Auto start next</label>
+            <div class="setting-input"><input x-model="settings.autoStart" type="checkbox"/></div>
           </div>
 
           <div class="setting-row">

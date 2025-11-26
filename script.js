@@ -253,12 +253,36 @@ function pomodoroApp() {
         }
       } catch (e) { }
 
-      // Keyboard shortcuts
+      // Keyboard shortcuts — ignore when typing in inputs/textareas/contenteditable
       window.addEventListener('keydown', (e) => {
-        if (e.code === 'Space') { e.preventDefault(); this.toggleStartPause(); }
-        if (e.code.toLowerCase() === 'keyr') this.resetTimer();
-        if (e.code.toLowerCase() === 'keys') this.skipTimer();
-        if (e.key === 'Escape') this.closeSettings();
+        try {
+          const el = e.target || {};
+          const tag = (el.tagName || '').toUpperCase();
+          const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable;
+          if (isTyping) return; // allow normal typing (including spaces)
+
+          if (e.code === 'Space') {
+            e.preventDefault();
+            this.toggleStartPause();
+            return;
+          }
+
+          if (e.code === 'KeyR') {
+            e.preventDefault();
+            this.resetTimer();
+            return;
+          }
+
+          if (e.code === 'KeyS') {
+            e.preventDefault();
+            this.skipTimer();
+            return;
+          }
+
+          if (e.key === 'Escape') this.closeSettings();
+        } catch (err) {
+          // ignore keyboard handler errors
+        }
       });
 
       // Save state before unload
