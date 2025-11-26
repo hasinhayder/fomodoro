@@ -56,10 +56,15 @@
 
     <div class="settings-bg" @click="closeSettings()" :class="{ open: settingsOpen }"></div>
     <aside class="settings-area" id="settings" :aria-hidden="!settingsOpen" role="dialog" aria-modal="true" :class="{ open: settingsOpen }">
-        <div class="settings-inner">
+      <div class="settings-inner" @keydown.enter.prevent="saveSettings()">
           <div class="settings-head">
             <h2>Settings</h2>
             <button @click="closeSettings()" class="icon-btn" aria-label="Close settings">✖️</button>
+          </div>
+
+          <div class="setting-row">
+            <label>Work Title</label>
+            <div class="setting-input"><input x-model="settings.workTitle" type="text" placeholder="Enter work title"/></div>
           </div>
 
           <div class="setting-row">
@@ -99,14 +104,18 @@
                 <option value="ocean">Ocean</option>
                 <option value="forest">Forest</option>
                 <option value="rose">Rose</option>
-                <option value="dusk">Dusk</option>
+                <option value="sunset">Sunset</option>
+                <option value="desert">Desert</option>
+                <option value="sky">Sky</option>
+                <option value="meadow">Meadow</option>
+                <option value="autumn">Autumn</option>
               </select>
             </div>
           </div>
 
           <div class="setting-row">
-            <button @click="saveSettings()" class="start-btn small">Save</button>
-            <button @click="resetSettings()" class="ghost-btn small">Reset</button>
+            <button type="button" @click="saveSettings()" class="start-btn small">Save</button>
+            <button type="button" @click="resetSettings()" class="ghost-btn small">Reset</button>
           </div>
 
           <footer class="settings-footer">
@@ -116,7 +125,6 @@
       </aside>
     </main>
 
-    <audio id="ding-audio" src="ding.mp3" preload="auto"></audio>
   </div>
 
   <script src="script.js"></script>

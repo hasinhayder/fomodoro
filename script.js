@@ -5,7 +5,8 @@ function pomodoroApp() {
     long: 15,
     sessionsUntilLong: 4,
     autoStart: false,
-    theme: 'morning'
+    theme: 'morning',
+    workTitle: ''
   };
 
   const loadSettings = () => {
@@ -46,7 +47,10 @@ function pomodoroApp() {
       return Math.min(100, ((this.state.totalSeconds - this.state.remainingSeconds) / this.state.totalSeconds) * 100);
     },
     get sessionIndicator() {
-      return this.state.mode === 'work' ? 'Work' : (this.state.mode === 'short' ? 'Short Break' : 'Long Break');
+      if (this.state.mode === 'work') {
+        return this.settings.workTitle || 'Work';
+      }
+      return this.state.mode === 'short' ? 'Short Break' : 'Long Break';
     },
     get startBtnText() {
       return this.state.running ? 'Pause' : 'Start';
@@ -65,14 +69,14 @@ function pomodoroApp() {
 
     // Quotes
     QUOTES: [
-      {text: 'You may delay, but time will not.', author: '— Benjamin Franklin'},
-      {text: 'The key is in not spending time, but in investing it.', author: '— Stephen R. Covey'},
-      {text: 'Time is what we want most, but what we use worst.', author: '— William Penn'},
-      {text: 'It’s not knowing what to do, it’s doing what you know.', author: '— Tony Robbins'},
-      {text: 'Lost time is never found again.', author: '— Benjamin Franklin'},
-      {text: 'Your future is created by what you do today, not tomorrow.', author: '— Robert Kiyosaki'},
-      {text: 'Don’t count the days; make the days count.', author: '— Muhammad Ali'},
-      {text: 'Small daily improvements over time lead to stunning results.', author: '— Robin Sharma'}
+      { text: 'You may delay, but time will not.', author: '— Benjamin Franklin' },
+      { text: 'The key is in not spending time, but in investing it.', author: '— Stephen R. Covey' },
+      { text: 'Time is what we want most, but what we use worst.', author: '— William Penn' },
+      { text: 'It’s not knowing what to do, it’s doing what you know.', author: '— Tony Robbins' },
+      { text: 'Lost time is never found again.', author: '— Benjamin Franklin' },
+      { text: 'Your future is created by what you do today, not tomorrow.', author: '— Robert Kiyosaki' },
+      { text: 'Don’t count the days; make the days count.', author: '— Muhammad Ali' },
+      { text: 'Small daily improvements over time lead to stunning results.', author: '— Robin Sharma' }
     ],
 
     // Methods
@@ -80,12 +84,31 @@ function pomodoroApp() {
       localStorage.setItem('pomodoro-settings', JSON.stringify(settings));
     },
     applyTheme() {
-      document.body.className = `theme-${this.settings.theme}`;
+      // apply theme class to body based on current settings
+      try {
+        document.body.className = `theme-${this.settings.theme}`;
+      } catch (e) {
+        // fallback: ensure at least DEFAULTS theme
+        document.body.className = `theme-${DEFAULTS.theme}`;
+      }
     },
     playDing() {
-      const dingAudio = document.getElementById('ding-audio');
-      dingAudio.currentTime = 0;
-      dingAudio.play().catch(() => {});
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = 880;
+        g.gain.value = 0.0001;
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start();
+        g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+        o.stop(ctx.currentTime + 0.55);
+      } catch (e) {
+        // no sound
+      }
     },
     notify(title, body) {
       if (!('Notification' in window)) return;
@@ -228,7 +251,7 @@ function pomodoroApp() {
           if (saved.remainingSeconds) this.state.remainingSeconds = saved.remainingSeconds;
           if (saved.completedSessions) this.state.completedSessions = saved.completedSessions;
         }
-      } catch (e) {}
+      } catch (e) { }
 
       // Keyboard shortcuts
       window.addEventListener('keydown', (e) => {
