@@ -219,6 +219,41 @@ function pomodoroApp() {
         this.setMode('work');
       }
     },
+    handleGlobalKeydown(e) {
+      try {
+        const active = document.activeElement;
+        const tag = (active && active.tagName) ? active.tagName.toUpperCase() : '';
+        const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (active && active.isContentEditable);
+        if (isTyping) return; // allow normal typing (including spaces)
+
+        // Space toggles start/pause when not typing in a field
+        const keyIsSpace = e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar' || e.which === 32 || e.keyCode === 32;
+        if (keyIsSpace) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.toggleStartPause();
+          return;
+        }
+
+        if (e.code === 'KeyR' && !e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          this.resetTimer();
+          return;
+        }
+
+        if (e.code === 'KeyS' && !e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          this.skipTimer();
+          return;
+        }
+
+        if (e.key === 'Escape') {
+          this.closeSettings();
+        }
+      } catch (err) {
+        console.warn('Keyboard handler error:', err);
+      }
+    },
     nextQuote() {
       this.currentQuoteIndex = (this.currentQuoteIndex + 1) % this.QUOTES.length;
       localStorage.setItem('pomodoro-quote-index', this.currentQuoteIndex);
@@ -252,38 +287,6 @@ function pomodoroApp() {
           if (saved.completedSessions) this.state.completedSessions = saved.completedSessions;
         }
       } catch (e) { }
-
-      // Keyboard shortcuts — ignore when typing in inputs/textareas/contenteditable
-      window.addEventListener('keydown', (e) => {
-        try {
-          const el = e.target || {};
-          const tag = (el.tagName || '').toUpperCase();
-          const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable;
-          if (isTyping) return; // allow normal typing (including spaces)
-
-          if (e.code === 'Space') {
-            e.preventDefault();
-            this.toggleStartPause();
-            return;
-          }
-
-          if (e.code === 'KeyR') {
-            e.preventDefault();
-            this.resetTimer();
-            return;
-          }
-
-          if (e.code === 'KeyS') {
-            e.preventDefault();
-            this.skipTimer();
-            return;
-          }
-
-          if (e.key === 'Escape') this.closeSettings();
-        } catch (err) {
-          // ignore keyboard handler errors
-        }
-      });
 
       // Save state before unload
       window.addEventListener('beforeunload', () => {
