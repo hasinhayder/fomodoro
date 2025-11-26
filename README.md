@@ -8,6 +8,7 @@ A simple, responsive Pomodoro timer built with HTML, CSS, and JS. The timer uses
 - Configurable durations and sessions until long break
 - Multiple themes (Morning, Night, Mint, Lavender)
  - Multiple themes (Morning, Night, Mint, Lavender + new: Sunrise, Ocean, Forest, Rose, Dusk)
+ - Multiple themes (Morning, Night, Mint, Lavender, Sunrise, Ocean, Forest, Rose, Sunset, Desert, Sky, Meadow, Autumn)
 - Overlay settings drawer
 - Auto-start next session option
 - Small session progress dots
@@ -21,6 +22,8 @@ Open `index.html` in a modern browser.
 ## Usage
 - Click the Start button (or press Space) to start/pause.
 - Skip (S) or Reset (R) a session using the buttons or the keyboard.
+ - Global Spacebar support: press Space anywhere (when not focused in a text field) to start/pause the timer.
+ - Global Cmd/Ctrl + K: press Cmd+K (macOS) or Ctrl+K (Windows/Linux) to open/close the settings panel.
 - Click the ⚙️ icon to open settings; modify durations, theme, and auto-start behavior.
 - Settings are saved to localStorage.
 

@@ -235,6 +235,14 @@ function pomodoroApp() {
           return;
         }
 
+        // Cmd/Ctrl+K to open settings (global)
+        if ((e.ctrlKey || e.metaKey) && (e.code === 'KeyK' || e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.toggleSettings();
+          return;
+        }
+
         if (e.code === 'KeyR' && !e.metaKey && !e.ctrlKey) {
           e.preventDefault();
           this.resetTimer();
