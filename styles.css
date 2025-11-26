@@ -67,11 +67,6 @@ body::after {
   align-items: center;
   gap: 8px;
 }
-.logo-icon {
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-}
 .icon-btn {
   border: none;
   background: transparent;
