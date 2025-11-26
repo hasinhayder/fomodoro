@@ -250,6 +250,12 @@ function pomodoroApp() {
         if (e.key === 'Escape') {
           this.closeSettings();
         }
+
+        // Toggle settings with Command+K or Control+K
+        if ((e.metaKey || e.ctrlKey) && e.code === 'KeyK') {
+          e.preventDefault();
+          this.toggleSettings();
+        }
       } catch (err) {
         console.warn('Keyboard handler error:', err);
       }
