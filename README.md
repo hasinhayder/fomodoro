@@ -27,11 +27,6 @@ Open `index.html` in a modern browser.
 - Click the ⚙️ icon to open settings; modify durations, theme, and auto-start behavior.
 - Settings are saved to localStorage.
 
-## Recommended improvements (optional)
-- Add user-uploaded sounds or MP3s
-- Add a task list or to-do integration
-- Add statistics and charts of completed Pomodoro sessions
-
 ---
 
 Built for quick use and easy customization — enjoy focused work!
