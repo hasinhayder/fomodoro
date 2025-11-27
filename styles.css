@@ -249,3 +249,5 @@ body[data-mode="long"] { --mode-accent: #7c3aed !important; --mode-accent-2: #a7
 #minutes, #seconds, .colon{font-variant-numeric:tabular-nums;transition:color .24s ease}
 
 .toast{position:fixed;right:20px;bottom:30px;background:var(--toast-bg);color:var(--toast-color);padding:10px 14px;border-radius:8px;z-index:9999;box-shadow:0 6px 18px rgba(0,0,0,0.12);}
+
+

@@ -6,12 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pomodoro - Beautiful Timer</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
   <meta name="description" content="A beautiful Pomodoro timer with themes and settings" />
   <script defer src="//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="theme-morning" x-data="pomodoroApp()" x-init="init()" @keydown.window="handleGlobalKeydown($event)">
-  <div class="app">
+  <div class="app" x-cloak>
     <header class="header">
       <h1 class="logo">Pomodoro</h1>
       <div class="header-controls">
