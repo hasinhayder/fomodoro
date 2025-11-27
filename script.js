@@ -68,20 +68,23 @@ function pomodoroApp() {
       return this.QUOTES[this.currentQuoteIndex % this.QUOTES.length];
     },
 
-    // Quotes
+// Quotes
     QUOTES: [
-      { text: 'You may delay, but time will not.', author: '— Benjamin Franklin' },
-      { text: 'The key is in not spending time, but in investing it.', author: '— Stephen R. Covey' },
-      { text: 'Time is what we want most, but what we use worst.', author: '— William Penn' },
-      { text: 'It’s not knowing what to do, it’s doing what you know.', author: '— Tony Robbins' },
-      { text: 'Lost time is never found again.', author: '— Benjamin Franklin' },
-      { text: 'Your future is created by what you do today, not tomorrow.', author: '— Robert Kiyosaki' },
-      { text: 'Don’t count the days; make the days count.', author: '— Muhammad Ali' },
-      { text: 'Small daily improvements over time lead to stunning results.', author: '— Robin Sharma' }
+      { text: 'Focus on being productive instead of busy.', author: '— Tim Ferriss' },
+      { text: 'Done is better than perfect.', author: '— Sheryl Sandberg' },
+      { text: 'The secret of getting ahead is getting started.', author: '— Mark Twain' },
+      { text: 'Productivity is never an accident. It is always the result of a commitment to excellence.', author: '— Paul J. Meyer' },
+      { text: 'The way to get started is to quit talking and begin doing.', author: '— Walt Disney' },
+      { text: 'Don\'t watch the clock; do what it does. Keep going.', author: '— Sam Levenson' },
+      { text: 'Success is the sum of small efforts repeated day in and day out.', author: '— Robert Collier' },
+      { text: 'Every minute you spend planning saves 10 minutes in execution.', author: '— Brian Tracy' },
+      { text: 'The price of success is hard work, dedication to the job at hand, and the determination that whether we win or lose, we have applied the best of ourselves to the task at hand.', author: '— Vince Lombardi' },
+      { text: 'Break down your long-range goals into a series of short-term tasks.', author: '— Brian Tracy' }
     ],
 
     // Methods
     saveSettingsToStorage(settings) {
+      
       localStorage.setItem('pomodoro-settings', JSON.stringify(settings));
     },
     applyTheme() {
