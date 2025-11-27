@@ -1,61 +1,278 @@
 [
-  { "text": "Focus on being productive instead of busy.", "author": "— Tim Ferriss" },
-  { "text": "Done is better than perfect.", "author": "— Sheryl Sandberg" },
-  { "text": "The secret of getting ahead is getting started.", "author": "— Mark Twain" },
-  { "text": "Productivity is never an accident. It is always the result of a commitment to excellence.", "author": "— Paul J. Meyer" },
-  { "text": "The way to get started is to quit talking and begin doing.", "author": "— Walt Disney" },
-  { "text": "Don't watch the clock; do what it does. Keep going.", "author": "— Sam Levenson" },
-  { "text": "Success is the sum of small efforts repeated day in and day out.", "author": "— Robert Collier" },
-  { "text": "Every minute you spend planning saves 10 minutes in execution.", "author": "— Brian Tracy" },
-  { "text": "The price of success is hard work, dedication to the job at hand, and the determination that whether we win or lose, we have applied the best of ourselves to the task at hand.", "author": "— Vince Lombardi" },
-  { "text": "Break down your long-range goals into a series of short-term tasks.", "author": "— Brian Tracy" },
-  { "text": "The key is not to prioritize what's on your schedule, but to schedule your priorities.", "author": "— Stephen R. Covey" },
-  { "text": "Small daily improvements are the key to staggering long-term results.", "author": "— Robin Sharma" },
-  { "text": "Action is the foundational key to all success.", "author": "— Pablo Picasso" },
-  { "text": "The best time to plant a tree was 20 years ago. The second best time is now.", "author": "— Chinese Proverb" },
-  { "text": "Your future is created by what you do today, not tomorrow.", "author": "— Robert Kiyosaki" },
-  { "text": "We cannot solve our problems with the same thinking we used when we created them.", "author": "— Albert Einstein" },
-  { "text": "It does not matter how slowly you go as long as you do not stop.", "author": "— Confucius" },
-  { "text": "Either you run the day or the day runs you.", "author": "— Jim Rohn" },
-  { "text": "Nothing will work unless you do.", "author": "— Maya Angelou" },
-  { "text": "The only impossible journey is the one you never begin.", "author": "— Tony Robbins" },
-  { "text": "You don't have to be great to start, but you have to start to be great.", "author": "— Zig Ziglar" },
-  { "text": "The best way to predict the future is to create it.", "author": "— Peter Drucker" },
-  { "text": "Success is walking from failure to failure with no loss of enthusiasm.", "author": "— Winston Churchill" },
-  { "text": "The only limit to our realization of tomorrow will be our doubts of today.", "author": "— Franklin D. Roosevelt" },
-  { "text": "What you get by achieving your goals is not as important as what you become by achieving your goals.", "author": "— Henry David Thoreau" },
-  { "text": "The secret of success is constancy to purpose.", "author": "— Benjamin Disraeli" },
-  { "text": "The way to get started is to decide to start.", "author": "— J.M. Barrie" },
-  { "text": "You may not control all the events that happen to you, but you can decide not to be reduced by them.", "author": "— Maya Angelou" },
-  { "text": "Do what you can, with what you have, where you are.", "author": "— Theodore Roosevelt" },
-  { "text": "You miss 100% of the shots you don't take.", "author": "— Wayne Gretzky" },
-  { "text": "The journey of a thousand miles begins with one step.", "author": "— Lao Tzu" },
-  { "text": "What we fear doing most is usually what we most need to do.", "author": "— Ralph Waldo Emerson" },
-  { "text": "Motivation gets you going, but discipline keeps you growing.", "author": "— John C. Maxwell" },
-  { "text": "Amateurs sit and wait for inspiration, the rest of us just get up and go to work.", "author": "— Stephen King" },
-  { "text": "The only way to do great work is to love what you do.", "author": "— Steve Jobs" },
-  { "text": "Your time is limited, don't waste it living someone else's life.", "author": "— Steve Jobs" },
-  { "text": "Innovation distinguishes between a leader and a follower.", "author": "— Steve Jobs" },
-  { "text": "The harder I work, the more luck I seem to have.", "author": "— Thomas Jefferson" },
-  { "text": "Don't be afraid to give up the good to go for the great.", "author": "— John D. Rockefeller" },
-  { "text": "The difference between ordinary and extraordinary is that little extra.", "author": "— Jimmy Johnson" },
-  { "text": "The only place where success comes before work is in the dictionary.", "author": "— Vidal Sassoon" },
-  { "text": "The best preparation for tomorrow is doing your best today.", "author": "— H. Jackson Brown Jr." },
-  { "text": "The successful warrior is the average man, with laser-like focus.", "author": "— Bruce Lee" },
-  { "text": "The only thing standing between you and your goal is the story you keep telling yourself.", "author": "— Jordan Belfort" },
-  { "text": "The only person you are destined to become is the person you decide to be.", "author": "— Ralph Waldo Emerson" },
-  { "text": "The expert in anything was once a beginner.", "author": "— Helen Hayes" },
-  { "text": "What you do today can improve all your tomorrows.", "author": "— Ralph Marston" },
-  { "text": "Opportunities don't happen. You create them.", "author": "— Chris Grosser" },
-  { "text": "Don't let yesterday take up too much of today.", "author": "— Will Rogers" },
-  { "text": "Whether you think you can or you think you can't, you're right.", "author": "— Henry Ford" },
-  { "text": "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.", "author": "— Albert Schweitzer" },
-  { "text": "The road to success and the road to failure are almost exactly the same.", "author": "— Colin R. Davis" },
-  { "text": "Don't limit your challenges. Challenge your limits.", "author": "— Unknown" },
-  { "text": "A goal without a plan is just a wish.", "author": "— Antoine de Saint-Exupéry" },
-  { "text": "Quality means doing it right when no one is looking.", "author": "— Henry Ford" },
-  { "text": "The only thing worse than being talked about is not being talked about.", "author": "— Oscar Wilde" },
-  { "text": "Imagination is more important than knowledge.", "author": "— Albert Einstein" },
-  { "text": "Life is what happens to you while you're busy making other plans.", "author": "— John Lennon" },
-  { "text": "The difference between who you are and who you want to be is what you do.", "author": "— Unknown" }
+  {
+    "text": "Focus on being productive instead of busy.",
+    "author": "— Tim Ferriss"
+  },
+  {
+    "text": "Done is better than perfect.",
+    "author": "— Sheryl Sandberg"
+  },
+  {
+    "text": "The secret of getting ahead is getting started.",
+    "author": "— Mark Twain"
+  },
+  {
+    "text": "Productivity is never an accident. It is always the result of a commitment to excellence.",
+    "author": "— Paul J. Meyer"
+  },
+  {
+    "text": "The way to get started is to quit talking and begin doing.",
+    "author": "— Walt Disney"
+  },
+  {
+    "text": "Don't watch the clock; do what it does. Keep going.",
+    "author": "— Sam Levenson"
+  },
+  {
+    "text": "Success is the sum of small efforts repeated day in and day out.",
+    "author": "— Robert Collier"
+  },
+  {
+    "text": "Every minute you spend planning saves 10 minutes in execution.",
+    "author": "— Brian Tracy"
+  },
+  {
+    "text": "The price of success is hard work, dedication to the job at hand, and the determination that whether we win or lose, we have applied the best of ourselves to the task at hand.",
+    "author": "— Vince Lombardi"
+  },
+  {
+    "text": "Break down your long-range goals into a series of short-term tasks.",
+    "author": "— Brian Tracy"
+  },
+  {
+    "text": "The key is not to prioritize what's on your schedule, but to schedule your priorities.",
+    "author": "— Stephen R. Covey"
+  },
+  {
+    "text": "Small daily improvements are the key to staggering long-term results.",
+    "author": "— Robin Sharma"
+  },
+  {
+    "text": "Action is the foundational key to all success.",
+    "author": "— Pablo Picasso"
+  },
+  {
+    "text": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "author": "— Chinese Proverb"
+  },
+  {
+    "text": "Your future is created by what you do today, not tomorrow.",
+    "author": "— Robert Kiyosaki"
+  },
+  {
+    "text": "We cannot solve our problems with the same thinking we used when we created them.",
+    "author": "— Albert Einstein"
+  },
+  {
+    "text": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "— Confucius"
+  },
+  {
+    "text": "Either you run the day or the day runs you.",
+    "author": "— Jim Rohn"
+  },
+  {
+    "text": "Nothing will work unless you do.",
+    "author": "— Maya Angelou"
+  },
+  {
+    "text": "The only impossible journey is the one you never begin.",
+    "author": "— Tony Robbins"
+  },
+  {
+    "text": "You don't have to be great to start, but you have to start to be great.",
+    "author": "— Zig Ziglar"
+  },
+  {
+    "text": "The best way to predict the future is to create it.",
+    "author": "— Peter Drucker"
+  },
+  {
+    "text": "Success is walking from failure to failure with no loss of enthusiasm.",
+    "author": "— Winston Churchill"
+  },
+  {
+    "text": "The only limit to our realization of tomorrow will be our doubts of today.",
+    "author": "— Franklin D. Roosevelt"
+  },
+  {
+    "text": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+    "author": "— Henry David Thoreau"
+  },
+  {
+    "text": "The secret of success is constancy to purpose.",
+    "author": "— Benjamin Disraeli"
+  },
+  {
+    "text": "The way to get started is to decide to start.",
+    "author": "— J.M. Barrie"
+  },
+  {
+    "text": "You may not control all the events that happen to you, but you can decide not to be reduced by them.",
+    "author": "— Maya Angelou"
+  },
+  {
+    "text": "Do what you can, with what you have, where you are.",
+    "author": "— Theodore Roosevelt"
+  },
+  {
+    "text": "You miss 100% of the shots you don't take.",
+    "author": "— Wayne Gretzky"
+  },
+  {
+    "text": "The journey of a thousand miles begins with one step.",
+    "author": "— Lao Tzu"
+  },
+  {
+    "text": "What we fear doing most is usually what we most need to do.",
+    "author": "— Ralph Waldo Emerson"
+  },
+  {
+    "text": "Motivation gets you going, but discipline keeps you growing.",
+    "author": "— John C. Maxwell"
+  },
+  {
+    "text": "Amateurs sit and wait for inspiration, the rest of us just get up and go to work.",
+    "author": "— Stephen King"
+  },
+  {
+    "text": "The only way to do great work is to love what you do.",
+    "author": "— Steve Jobs"
+  },
+  {
+    "text": "Your time is limited, don't waste it living someone else's life.",
+    "author": "— Steve Jobs"
+  },
+  {
+    "text": "Innovation distinguishes between a leader and a follower.",
+    "author": "— Steve Jobs"
+  },
+  {
+    "text": "The harder I work, the more luck I seem to have.",
+    "author": "— Thomas Jefferson"
+  },
+  {
+    "text": "Don't be afraid to give up the good to go for the great.",
+    "author": "— John D. Rockefeller"
+  },
+  {
+    "text": "The difference between ordinary and extraordinary is that little extra.",
+    "author": "— Jimmy Johnson"
+  },
+  {
+    "text": "The only place where success comes before work is in the dictionary.",
+    "author": "— Vidal Sassoon"
+  },
+  {
+    "text": "The best preparation for tomorrow is doing your best today.",
+    "author": "— H. Jackson Brown Jr."
+  },
+  {
+    "text": "The successful warrior is the average man, with laser-like focus.",
+    "author": "— Bruce Lee"
+  },
+  {
+    "text": "The only thing standing between you and your goal is the story you keep telling yourself.",
+    "author": "— Jordan Belfort"
+  },
+  {
+    "text": "The only person you are destined to become is the person you decide to be.",
+    "author": "— Ralph Waldo Emerson"
+  },
+  {
+    "text": "The expert in anything was once a beginner.",
+    "author": "— Helen Hayes"
+  },
+  {
+    "text": "What you do today can improve all your tomorrows.",
+    "author": "— Ralph Marston"
+  },
+  {
+    "text": "Opportunities don't happen. You create them.",
+    "author": "— Chris Grosser"
+  },
+  {
+    "text": "Don't let yesterday take up too much of today.",
+    "author": "— Will Rogers"
+  },
+  {
+    "text": "Whether you think you can or you think you can't, you're right.",
+    "author": "— Henry Ford"
+  },
+  {
+    "text": "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+    "author": "— Albert Schweitzer"
+  },
+  {
+    "text": "The road to success and the road to failure are almost exactly the same.",
+    "author": "— Colin R. Davis"
+  },
+  {
+    "text": "Don't limit your challenges. Challenge your limits.",
+    "author": "— Unknown"
+  },
+  {
+    "text": "A goal without a plan is just a wish.",
+    "author": "— Antoine de Saint-Exupéry"
+  },
+  {
+    "text": "Quality means doing it right when no one is looking.",
+    "author": "— Henry Ford"
+  },
+  {
+    "text": "The only thing worse than being talked about is not being talked about.",
+    "author": "— Oscar Wilde"
+  },
+  {
+    "text": "Imagination is more important than knowledge.",
+    "author": "— Albert Einstein"
+  },
+  {
+    "text": "Life is what happens to you while you're busy making other plans.",
+    "author": "— John Lennon"
+  },
+  {
+    "text": "The difference between who you are and who you want to be is what you do.",
+    "author": "— Unknown"
+  },
+  {
+    "text": "The way to get things done is not to mind who gets the credit.",
+    "author": "— Benjamin Franklin"
+  },
+  {
+    "text": "Concentrate all your thoughts upon the work at hand. The sun's rays do not burn until brought to a focus.",
+    "author": "— Alexander Graham Bell"
+  },
+  {
+    "text": "You don't drown by falling in the water; you drown by staying there.",
+    "author": "— Edwin Louis Cole"
+  },
+  {
+    "text": "Productivity is being able to do things that you were never able to do before.",
+    "author": "— Franz Kafka"
+  },
+  {
+    "text": "The more I want to get something done, the less I call it work.",
+    "author": "— Richard Bach"
+  },
+  {
+    "text": "You can do anything, but not everything.",
+    "author": "— David Allen"
+  },
+  {
+    "text": "There is no substitute for hard work.",
+    "author": "— Thomas Edison"
+  },
+  {
+    "text": "Simplicity is the ultimate sophistication.",
+    "author": "— Leonardo da Vinci"
+  },
+  {
+    "text": "The secret to getting started is breaking your complex overwhelming tasks into small manageable tasks, and then starting on the first one.",
+    "author": "— Mark Twain"
+  },
+  {
+    "text": "If you spend too much time thinking about a thing, you'll never get it done.",
+    "author": "— Bruce Lee"
+  }
 ]
