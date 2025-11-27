@@ -35,6 +35,7 @@ function pomodoroApp() {
     quoteFadeClass: '',
     currentQuoteIndex: 0,
     quoteTimer: null,
+    originalTitle: document.title,
 
     // Computed properties
     get minutes() {
@@ -143,8 +144,10 @@ function pomodoroApp() {
     startTimer() {
       if (this.state.running) return;
       this.state.running = true;
+      this.updateTitleWithTimer();
       this.state.timerId = setInterval(() => {
         this.state.remainingSeconds -= 1;
+        this.updateTitleWithTimer();
         if (this.state.remainingSeconds <= 0) {
           clearInterval(this.state.timerId);
           this.state.running = false;
@@ -155,11 +158,13 @@ function pomodoroApp() {
     pauseTimer() {
       if (!this.state.running) return;
       this.state.running = false;
+      this.updateTitleWithTimer();
       clearInterval(this.state.timerId);
     },
     resetTimer() {
       this.pauseTimer();
       this.state.remainingSeconds = this.state.totalSeconds;
+      this.updateTitleWithTimer();
     },
     skipTimer() {
       this.pauseTimer();
@@ -185,6 +190,8 @@ function pomodoroApp() {
 
       if (this.settings.autoStart && !skipped) {
         this.startTimer();
+      } else {
+        this.updateTitleWithTimer();
       }
       this.nextQuote();
     },
@@ -217,6 +224,13 @@ function pomodoroApp() {
         this.settings = { ...this.DEFAULTS };
         this.applyTheme();
         this.setMode('work');
+      }
+    },
+    updateTitleWithTimer() {
+      if (this.state.running) {
+        document.title = `${this.minutes}:${this.seconds} - ${this.originalTitle}`;
+      } else {
+        document.title = this.originalTitle;
       }
     },
     handleGlobalKeydown(e) {
