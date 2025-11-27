@@ -65,22 +65,33 @@ function pomodoroApp() {
       return dots;
     },
     get currentQuote() {
+      if (!this.QUOTES || this.QUOTES.length === 0) return { text: '', author: '' };
       return this.QUOTES[this.currentQuoteIndex % this.QUOTES.length];
     },
 
 // Quotes
-    QUOTES: [
-      { text: 'Focus on being productive instead of busy.', author: '— Tim Ferriss' },
-      { text: 'Done is better than perfect.', author: '— Sheryl Sandberg' },
-      { text: 'The secret of getting ahead is getting started.', author: '— Mark Twain' },
-      { text: 'Productivity is never an accident. It is always the result of a commitment to excellence.', author: '— Paul J. Meyer' },
-      { text: 'The way to get started is to quit talking and begin doing.', author: '— Walt Disney' },
-      { text: 'Don\'t watch the clock; do what it does. Keep going.', author: '— Sam Levenson' },
-      { text: 'Success is the sum of small efforts repeated day in and day out.', author: '— Robert Collier' },
-      { text: 'Every minute you spend planning saves 10 minutes in execution.', author: '— Brian Tracy' },
-      { text: 'The price of success is hard work, dedication to the job at hand, and the determination that whether we win or lose, we have applied the best of ourselves to the task at hand.', author: '— Vince Lombardi' },
-      { text: 'Break down your long-range goals into a series of short-term tasks.', author: '— Brian Tracy' }
-    ],
+    QUOTES: [],
+    async loadQuotes() {
+      const fallback = [
+        { text: 'Keep going; progress is progress, no matter how small.', author: '— Unknown' }
+      ];
+      try {
+        const resp = await fetch('./quotes.json');
+        if (!resp.ok) throw new Error('Fetch failed');
+        const data = await resp.json();
+        if (!Array.isArray(data) || data.length === 0) {
+          this.QUOTES = fallback;
+        } else {
+          this.QUOTES = data;
+        }
+      } catch (e) {
+        console.warn('Could not load quotes.json, falling back to default quotes', e);
+        this.QUOTES = fallback;
+      }
+      // ensure stored index is valid
+      const savedIndex = parseInt(localStorage.getItem('pomodoro-quote-index')) || 0;
+      this.currentQuoteIndex = this.QUOTES.length > 0 ? savedIndex % this.QUOTES.length : 0;
+    },
 
     // Methods
     saveSettingsToStorage(settings) {
@@ -302,6 +313,7 @@ function pomodoroApp() {
       }
     },
     nextQuote() {
+      if (!this.QUOTES || this.QUOTES.length === 0) return;
       this.currentQuoteIndex = (this.currentQuoteIndex + 1) % this.QUOTES.length;
       localStorage.setItem('pomodoro-quote-index', this.currentQuoteIndex);
       // Animate
@@ -319,10 +331,10 @@ function pomodoroApp() {
         this.nextQuote();
       }, interval);
     },
-    init() {
+    async init() {
       this.applyTheme();
       this.setMode('work');
-      this.currentQuoteIndex = parseInt(localStorage.getItem('pomodoro-quote-index')) || 0;
+      await this.loadQuotes();
       this.startQuoteRotation();
 
       this.restoreState();
