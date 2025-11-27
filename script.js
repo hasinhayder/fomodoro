@@ -236,8 +236,23 @@ function pomodoroApp() {
     updateTitleWithTimer() {
       if (this.state.running) {
         document.title = `${this.minutes}:${this.seconds} - ${this.originalTitle}`;
+
+        const favicon = document.getElementById('dynamic-favicon');
+        if (favicon) {
+          const paths = {
+            work: 'favicons/work-orange.svg',
+            short: 'favicons/short-green.svg',
+            long: 'favicons/long-purple.svg'
+          };
+          favicon.href = paths[this.state.mode] || '';
+        }
       } else {
         document.title = this.originalTitle;
+
+        const favicon = document.getElementById('dynamic-favicon');
+        if (favicon) {
+          favicon.href = 'favicons/pomodoro-default.svg';
+        }
       }
     },
     handleGlobalKeydown(e) {
@@ -309,6 +324,7 @@ function pomodoroApp() {
 
       this.restoreState();
       this.setupUnloadHandler();
+      this.updateTitleWithTimer();
     },
     restoreState() {
       try {
