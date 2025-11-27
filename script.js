@@ -127,10 +127,17 @@ function pomodoroApp() {
       document.body.dataset.mode = mode;
       if (mode === 'work') {
         this.state.totalSeconds = this.settings.work * 60;
+        document.body.className = `theme-${this.settings.theme}`;
       } else if (mode === 'short') {
         this.state.totalSeconds = this.settings.short * 60;
+        const natureThemes = ['mint', 'meadow', 'emerald', 'forest'];
+        const randomTheme = natureThemes[Math.floor(Math.random() * natureThemes.length)];
+        document.body.className = `theme-${randomTheme}`;
       } else {
         this.state.totalSeconds = this.settings.long * 60;
+        const natureThemes = ['mint', 'meadow', 'emerald', 'forest'];
+        const randomTheme = natureThemes[Math.floor(Math.random() * natureThemes.length)];
+        document.body.className = `theme-${randomTheme}`;
       }
       this.state.remainingSeconds = this.state.totalSeconds;
     },

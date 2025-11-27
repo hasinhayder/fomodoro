@@ -40,7 +40,7 @@ body::before, body::after {
 body::before {
   width: 680px;
   height: 680px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--mode-accent), var(--mode-accent-2));
   left: -200px;
   top: -120px;
 }
@@ -88,11 +88,11 @@ body::after {
 }
 .icon-btn:hover { 
   background: var(--icon-hover-bg);
-  color: var(--accent);
+  color: var(--mode-accent);
   transform: translateY(-1px);
 }
 .icon-btn:focus { 
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--mode-accent);
   outline-offset: 2px;
 }
 
@@ -114,12 +114,12 @@ body::after {
 .quote-card.fade-exit-active{opacity:0;transition:opacity 280ms ease}
 
 .progress-container{width:100%;height:8px;background:linear-gradient(90deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));border-radius:6px;overflow:hidden}
-.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--mode-accent),var(--mode-accent-2));width:0%}
 .progress-bar{transition:width .6s ease}
 
 .session-dots{display:flex;gap:8px;align-items:center;margin-left:0;margin-top:8px}
 .session-dots .dot{width:10px;height:10px;border-radius:50%;background:rgba(15,23,42,0.06)}
-.session-dots .dot.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 5px 10px rgba(0,0,0,0.06)}
+.session-dots .dot.active{background:linear-gradient(90deg,var(--mode-accent),var(--mode-accent-2));box-shadow:0 5px 10px rgba(0,0,0,0.06)}
 
 .timer-display{display:flex;justify-content:center;align-items:baseline;width:100%;min-height:275px}
 .timer-display span{display:inline-block}
@@ -162,8 +162,8 @@ body::after {
   transition:all .2s ease;
 }
 .ghost-btn:hover{
-  border-color:var(--accent);
-  color:var(--accent);
+  border-color:var(--mode-accent);
+  color:var(--mode-accent);
   background:var(--icon-hover-bg);
   transform:translateY(-1px);
 }
@@ -176,8 +176,8 @@ body::after {
   box-shadow:0 12px 28px rgba(0,0,0,0.16);
 }
 .ghost-btn.small:hover {
-  border-color:var(--accent);
-  color:var(--accent);
+  border-color:var(--mode-accent);
+  color:var(--mode-accent);
   background:var(--icon-hover-bg);
 }
 
@@ -231,7 +231,10 @@ footer{padding:24px;text-align:center;color:var(--muted)}
 
 .theme-night{--toast-bg: rgba(255,255,255,0.06); --toast-color: var(--text)}
 
-/* Accents depending on session mode; body receives data-mode attribute: work/short/long */
+/* Mode-specific accents for progress bar, dots, hovers, etc. */
+body[data-mode="work"] { --mode-accent: #ef4444; --mode-accent-2: #f97316; }
+body[data-mode="short"] { --mode-accent: #10b981; --mode-accent-2: #34d399; }
+body[data-mode="long"] { --mode-accent: #7c3aed; --mode-accent-2: #a78bfa; }
 
 /* Small aesthetic helpers */
 .button-row{text-align:center}
