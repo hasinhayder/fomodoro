@@ -137,7 +137,7 @@ function pomodoroApp() {
         });
       }
     },
-    setMode(mode) {
+    setMode(mode, resetTime = true) {
       this.state.mode = mode;
       document.body.dataset.mode = mode;
       if (mode === 'work') {
@@ -154,7 +154,10 @@ function pomodoroApp() {
         const randomTheme = natureThemes[Math.floor(Math.random() * natureThemes.length)];
         document.body.className = `theme-${randomTheme}`;
       }
-      this.state.remainingSeconds = this.state.totalSeconds;
+      // Only reset remaining seconds if we want to start a fresh session
+      if (resetTime) {
+        this.state.remainingSeconds = this.state.totalSeconds;
+      }
     },
     toggleStartPause() {
       if (this.state.running) {
@@ -227,7 +230,8 @@ function pomodoroApp() {
       this.saveSettingsToStorage(this.settings);
       this.applyTheme();
       if (!this.state.running) {
-        this.setMode(this.state.mode);
+        // Update mode with new settings but preserve current progress
+        this.setMode(this.state.mode, false);
       }
       this.closeSettings();
       // Toast
@@ -334,11 +338,15 @@ function pomodoroApp() {
     },
     async init() {
       this.applyTheme();
-      this.setMode('work');
       await this.loadQuotes();
-      this.startQuoteRotation();
 
+      // Restore state first to preserve the current mode and timer state
       this.restoreState();
+
+      // Then ensure correct mode is set based on restored state without resetting the timer
+      this.setMode(this.state.mode, false);
+
+      this.startQuoteRotation();
       this.setupUnloadHandler();
       this.updateTitleWithTimer();
     },
