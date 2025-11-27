@@ -113,13 +113,13 @@ body::after {
 .quote-card.fade-exit{opacity:1}
 .quote-card.fade-exit-active{opacity:0;transition:opacity 280ms ease}
 
-.progress-container{width:100%;height:8px;background:linear-gradient(90deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));border-radius:6px;overflow:hidden}
-.progress-bar{height:100%;background:linear-gradient(90deg,var(--mode-accent),var(--mode-accent-2));width:0%}
+.progress-container{width:100%;height:8px;background:color-mix(in srgb, var(--muted) 12%, transparent);border-radius:6px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
 .progress-bar{transition:width .6s ease}
 
 .session-dots{display:flex;gap:8px;align-items:center;margin-left:0;margin-top:8px}
-.session-dots .dot{width:10px;height:10px;border-radius:50%;background:rgba(15,23,42,0.06)}
-.session-dots .dot.active{background:linear-gradient(90deg,var(--mode-accent),var(--mode-accent-2));box-shadow:0 5px 10px rgba(0,0,0,0.06)}
+.session-dots .dot{width:10px;height:10px;border-radius:50%;background:color-mix(in srgb, var(--muted) 15%, transparent)}
+.session-dots .dot.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 5px 10px rgba(0,0,0,0.06)}
 
 .timer-display{display:flex;justify-content:center;align-items:baseline;width:100%;min-height:275px}
 .timer-display span{display:inline-block}
@@ -232,9 +232,9 @@ footer{padding:24px;text-align:center;color:var(--muted)}
 .theme-night{--toast-bg: rgba(255,255,255,0.06); --toast-color: var(--text)}
 
 /* Mode-specific accents for progress bar, dots, hovers, etc. */
-body[data-mode="work"] { --mode-accent: #ef4444; --mode-accent-2: #f97316; }
-body[data-mode="short"] { --mode-accent: #10b981; --mode-accent-2: #34d399; }
-body[data-mode="long"] { --mode-accent: #7c3aed; --mode-accent-2: #a78bfa; }
+body[data-mode="work"] { --mode-accent: #ef4444 !important; --mode-accent-2: #f97316 !important; }
+body[data-mode="short"] { --mode-accent: #10b981 !important; --mode-accent-2: #34d399 !important; }
+body[data-mode="long"] { --mode-accent: #7c3aed !important; --mode-accent-2: #a78bfa !important; }
 
 /* Small aesthetic helpers */
 .button-row{text-align:center}
