@@ -97,7 +97,7 @@
           <div class="setting-input"><input x-model="settings.workTitle" type="text" placeholder="Enter work title" /></div>
         </div>
 
-        <div class="setting-row slider-row">
+        <div class="setting-row slider-row" x-show="!settings.hateSliders">
           <label>Work</label>
           <div class="setting-input slider-container">
             <input x-model="settings.work" @input="updateCurrentModeDuration()" type="range" min="1" max="60" />
@@ -105,7 +105,7 @@
           </div>
         </div>
 
-        <div class="setting-row slider-row">
+        <div class="setting-row slider-row" x-show="!settings.hateSliders">
           <label>Short Break</label>
           <div class="setting-input slider-container">
             <input x-model="settings.short" @input="updateCurrentModeDuration()" type="range" min="1" max="15" />
@@ -113,11 +113,32 @@
           </div>
         </div>
 
-        <div class="setting-row slider-row">
+        <div class="setting-row slider-row" x-show="!settings.hateSliders">
           <label>Long Break</label>
           <div class="setting-input slider-container">
             <input x-model="settings.long" @input="updateCurrentModeDuration()" type="range" min="1" max="45" />
             <span class="slider-value" x-text="settings.long"></span>
+          </div>
+        </div>
+
+        <div class="setting-row" x-show="settings.hateSliders">
+          <label>Work</label>
+          <div class="setting-input">
+            <input x-model="settings.work" @input="updateCurrentModeDuration()" type="number" min="1" max="60" />
+          </div>
+        </div>
+
+        <div class="setting-row" x-show="settings.hateSliders">
+          <label>Short Break</label>
+          <div class="setting-input">
+            <input x-model="settings.short" @input="updateCurrentModeDuration()" type="number" min="1" max="15" />
+          </div>
+        </div>
+
+        <div class="setting-row" x-show="settings.hateSliders">
+          <label>Long Break</label>
+          <div class="setting-input">
+            <input x-model="settings.long" @input="updateCurrentModeDuration()" type="number" min="1" max="45" />
           </div>
         </div>
 
@@ -159,6 +180,11 @@
         <div class="setting-row">
           <label>Auto start next</label>
           <div class="setting-input"><input x-model="settings.autoStart" type="checkbox" /></div>
+        </div>
+
+        <div class="setting-row">
+          <label>I hate Sliders</label>
+          <div class="setting-input"><input x-model="settings.hateSliders" type="checkbox" /></div>
         </div>
 
         <div class="setting-row">

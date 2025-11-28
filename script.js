@@ -6,7 +6,8 @@ function pomodoroApp() {
     sessionsUntilLong: 4,
     autoStart: false,
     theme: 'morning',
-    workTitle: ''
+    workTitle: '',
+    hateSliders: false
   };
 
   const loadSettings = () => {
