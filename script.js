@@ -214,7 +214,7 @@ function pomodoroApp() {
         this.setMode('work');
       }
 
-      if (this.settings.autoStart && !skipped) {
+      if (this.settings.autoStart) {
         this.startTimer();
       } else {
         this.updateTitleWithTimer();
