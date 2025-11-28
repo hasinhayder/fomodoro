@@ -105,9 +105,11 @@ body::after {
 /* Quote area */
 .quote-area{position:fixed;right:32px;top:150px;width:475px;max-width:42vw;z-index:40;display:flex;justify-content:flex-start}
 .quote-area.hidden{opacity:0;transform:translateX(12px);pointer-events:none;visibility:hidden}
-.quote-card{width:100%;background:linear-gradient(180deg,var(--glass), rgba(0,0,0,0.03));box-shadow:var(--card-shadow);border-radius:20px;padding:25px;color:var(--text);} 
-.quote-card blockquote{margin:0;font-size:22px;line-height:1.5;color:var(--muted);font-weight:600}
-.quote-card cite{display:block;margin-top:14px;font-size:17px;color:var(--muted)}
+.quote-card{width:100%;background:linear-gradient(180deg,var(--glass), rgba(0,0,0,0.03));box-shadow:var(--card-shadow);border-radius:20px;padding:25px;color:var(--text);position:relative;}
+.quote-icon{position:absolute;top:15px;left:25px;opacity:0.2;}
+.quote-icon svg{stroke:var(--accent);color:var(--accent);width:48px;height:48px;}
+.quote-card blockquote{margin:0;margin-top:48px;font-size:22px;line-height:1.5;color:var(--muted);font-weight:400;position:relative;z-index:1}
+.quote-card cite{display:block;margin-top:14px;font-size:17px;color:var(--muted);}
 .quote-card.fade-enter{opacity:0;transform:translateY(6px)}
 .quote-card.fade-enter-active{opacity:1;transform:none;transition:all 420ms ease}
 .quote-card.fade-exit{opacity:1}
