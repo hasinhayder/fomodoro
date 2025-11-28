@@ -229,10 +229,26 @@ function pomodoroApp() {
     saveSettings() {
       this.saveSettingsToStorage(this.settings);
       this.applyTheme();
-      if (!this.state.running) {
-        // Update mode with new settings but preserve current progress
+      
+      // Always update the current mode with new settings
+      // If timer is running, update totalSeconds but preserve remainingSeconds
+      if (this.state.running) {
+        if (this.state.mode === 'work') {
+          this.state.totalSeconds = this.settings.work * 60;
+        } else if (this.state.mode === 'short') {
+          this.state.totalSeconds = this.settings.short * 60;
+        } else if (this.state.mode === 'long') {
+          this.state.totalSeconds = this.settings.long * 60;
+        }
+        // Ensure remainingSeconds doesn't exceed the new totalSeconds
+        if (this.state.remainingSeconds > this.state.totalSeconds) {
+          this.state.remainingSeconds = this.state.totalSeconds;
+        }
+      } else {
+        // If timer is not running, update mode with new settings
         this.setMode(this.state.mode, false);
       }
+      
       this.closeSettings();
       // Toast
       const toast = document.createElement('div');
@@ -242,6 +258,26 @@ function pomodoroApp() {
       setTimeout(() => { toast.remove(); }, 2400);
       if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
+      }
+    },
+    updateCurrentModeDuration() {
+      // Update the totalSeconds for the current mode based on the new slider value
+      if (this.state.mode === 'work') {
+        this.state.totalSeconds = this.settings.work * 60;
+      } else if (this.state.mode === 'short') {
+        this.state.totalSeconds = this.settings.short * 60;
+      } else if (this.state.mode === 'long') {
+        this.state.totalSeconds = this.settings.long * 60;
+      }
+      
+      // If timer is not running, update remainingSeconds to match the new totalSeconds
+      if (!this.state.running) {
+        this.state.remainingSeconds = this.state.totalSeconds;
+      } else {
+        // If timer is running, ensure remainingSeconds doesn't exceed the new totalSeconds
+        if (this.state.remainingSeconds > this.state.totalSeconds) {
+          this.state.remainingSeconds = this.state.totalSeconds;
+        }
       }
     },
     resetSettings() {

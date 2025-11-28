@@ -141,7 +141,13 @@ body::after {
   transition:all .2s ease;
   position:relative;
   overflow:hidden;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
+.btn-icon{display:inline-block}
+.btn-text{font-weight:600}
+.btn-icon svg{width:24px;height:24px}
 .start-btn:hover{
   transform:translateY(-2px);
   box-shadow:0 18px 42px rgba(0,0,0,0.18);
@@ -180,6 +186,8 @@ body::after {
   color:var(--mode-accent);
   background:var(--icon-hover-bg);
 }
+.icon-btn-large{font-size:24px;padding:18px 20px;display:flex;align-items:center;justify-content:center}
+.icon-btn-large svg{display:inline-block;width:28px;height:28px}
 
 .settings-area{background:linear-gradient(180deg, var(--glass), rgba(0,0,0,0.06));color:var(--text);border-radius:20px;padding:22px;box-shadow:var(--card-shadow);position:fixed;right:24px;top:80px;width:440px;max-width:92vw;height:calc(100vh - 160px);transform:translateX(calc(100% + 48px));transition:transform .28s ease;z-index:60}
 .settings-area.open{transform:translateX(0);}

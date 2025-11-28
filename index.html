@@ -47,9 +47,25 @@
         </div>
 
         <div class="timer-controls">
-          <button @click="toggleStartPause()" class="start-btn" x-text="startBtnText"></button>
-          <button @click="skipTimer()" class="ghost-btn">Skip</button>
-          <button @click="resetTimer()" class="ghost-btn">Reset</button>
+          <button @click="toggleStartPause()" class="start-btn">
+            <svg class="btn-icon" x-show="!state.running" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="btn-icon" x-show="state.running" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+            <span class="btn-text" x-text="startBtnText"></span>
+          </button>
+          <button @click="skipTimer()" class="ghost-btn icon-btn-large">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+            </svg>
+          </button>
+          <button @click="resetTimer()" class="ghost-btn icon-btn-large">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -79,7 +95,7 @@
         <div class="setting-row slider-row">
           <label>Work</label>
           <div class="setting-input slider-container">
-            <input x-model="settings.work" type="range" min="1" max="60" />
+            <input x-model="settings.work" @input="updateCurrentModeDuration()" type="range" min="1" max="60" />
             <span class="slider-value" x-text="settings.work"></span>
           </div>
         </div>
@@ -87,7 +103,7 @@
         <div class="setting-row slider-row">
           <label>Short Break</label>
           <div class="setting-input slider-container">
-            <input x-model="settings.short" type="range" min="1" max="15" />
+            <input x-model="settings.short" @input="updateCurrentModeDuration()" type="range" min="1" max="15" />
             <span class="slider-value" x-text="settings.short"></span>
           </div>
         </div>
@@ -95,7 +111,7 @@
         <div class="setting-row slider-row">
           <label>Long Break</label>
           <div class="setting-input slider-container">
-            <input x-model="settings.long" type="range" min="1" max="45" />
+            <input x-model="settings.long" @input="updateCurrentModeDuration()" type="range" min="1" max="45" />
             <span class="slider-value" x-text="settings.long"></span>
           </div>
         </div>
