@@ -189,10 +189,21 @@ body::after {
 .settings-head{display:flex;align-items:center;justify-content:space-between}
 .settings-area h2{margin:0 0 6px 0;font-size:20px}
 .setting-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:16px}
+.setting-row.slider-row{flex-direction:column;align-items:flex-start}
+.setting-row.slider-row label{margin-bottom:8px}
 .setting-input{display:flex;gap:12px;align-items:center}
 .setting-input input[type=number]{width:110px;padding:10px;border-radius:10px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text);font-size:16px}
 .setting-input input[type=text]{width:260px;padding:10px;border-radius:10px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text);font-size:16px}
 .setting-input select{padding:10px;border-radius:10px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--text);font-size:16px}
+
+/* Slider styles */
+.slider-container{display:flex;align-items:center;gap:12px;width:100%}
+.slider-container input[type=range]{flex:1;height:6px;border-radius:3px;background:var(--input-border);outline:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+.slider-container input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));cursor:pointer;transition:all 0.2s ease;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.slider-container input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));cursor:pointer;transition:all 0.2s ease;box-shadow:0 2px 6px rgba(0,0,0,0.1);border:none}
+.slider-container input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.1);box-shadow:0 3px 8px rgba(0,0,0,0.15)}
+.slider-container input[type=range]:hover::-moz-range-thumb{transform:scale(1.1);box-shadow:0 3px 8px rgba(0,0,0,0.15)}
+.slider-value{min-width:40px;text-align:center;font-weight:600;color:var(--text);font-size:16px;padding:6px 8px;background:var(--input-bg);border-radius:8px;border:1px solid var(--input-border)}
 .settings-footer{margin-top:8px;text-align:center;color:var(--muted)}
 
 footer{padding:24px;text-align:center;color:var(--muted)}

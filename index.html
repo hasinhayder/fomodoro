@@ -76,19 +76,28 @@
           <div class="setting-input"><input x-model="settings.workTitle" type="text" placeholder="Enter work title" /></div>
         </div>
 
-        <div class="setting-row">
+        <div class="setting-row slider-row">
           <label>Work</label>
-          <div class="setting-input"><input x-model="settings.work" type="number" min="1" max="180" /></div>
+          <div class="setting-input slider-container">
+            <input x-model="settings.work" type="range" min="1" max="60" />
+            <span class="slider-value" x-text="settings.work"></span>
+          </div>
         </div>
 
-        <div class="setting-row">
+        <div class="setting-row slider-row">
           <label>Short Break</label>
-          <div class="setting-input"><input x-model="settings.short" type="number" min="1" max="60" /></div>
+          <div class="setting-input slider-container">
+            <input x-model="settings.short" type="range" min="1" max="15" />
+            <span class="slider-value" x-text="settings.short"></span>
+          </div>
         </div>
 
-        <div class="setting-row">
+        <div class="setting-row slider-row">
           <label>Long Break</label>
-          <div class="setting-input"><input x-model="settings.long" type="number" min="1" max="120" /></div>
+          <div class="setting-input slider-container">
+            <input x-model="settings.long" type="range" min="1" max="45" />
+            <span class="slider-value" x-text="settings.long"></span>
+          </div>
         </div>
 
         <div class="setting-row">
