@@ -148,7 +148,7 @@ body::after {
   gap:10px;
 }
 .btn-icon{display:inline-block}
-.btn-text{font-weight:600}
+.btn-text{font-weight:400}
 .btn-icon svg{width:24px;height:24px}
 .start-btn:hover{
   transform:translateY(-2px);
