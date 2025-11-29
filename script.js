@@ -203,29 +203,22 @@ function pomodoroApp() {
       this.pauseTimer();
       this.onTimerEnd(true);
     },
-    onTimerEnd(skipped = false) {
+    onTimerEnd() {
       this.playDing();
       this.notify('Pomodoro', `Session complete: ${this.state.mode}`);
-
-      if (this.state.mode === 'work') {
+      
+      const wasWork = this.state.mode === 'work';
+      if (wasWork) {
         this.state.completedSessions = (this.state.completedSessions || 0) + 1;
       }
-
-      if (this.state.mode === 'work') {
-        if (this.state.completedSessions % this.settings.sessionsUntilLong === 0) {
-          this.setMode('long');
-        } else {
-          this.setMode('short');
-        }
-      } else {
-        this.setMode('work');
-      }
-
-      if (this.settings.autoStart) {
-        this.startTimer();
-      } else {
-        this.updateTitleWithTimer();
-      }
+      
+      const nextMode = wasWork 
+        ? (this.state.completedSessions % this.settings.sessionsUntilLong === 0 ? 'long' : 'short')
+        : 'work';
+      
+      this.setMode(nextMode);
+      
+      (this.settings.autoStart ? this.startTimer : this.updateTitleWithTimer).call(this)();
       this.nextQuote();
     },
     toggleSettings() {
@@ -238,30 +231,25 @@ function pomodoroApp() {
       this.saveSettingsToStorage(this.settings);
       this.applyTheme();
       
-      const modeSettings = {
-        work: this.settings.work,
-        short: this.settings.short,
-        long: this.settings.long
-      };
+      const duration = (this.settings[this.state.mode] || 25) * 60;
       
       if (this.state.running) {
-        this.state.totalSeconds = (modeSettings[this.state.mode] || 25) * 60;
-        this.state.remainingSeconds = Math.min(this.state.remainingSeconds, this.state.totalSeconds);
+        this.state.totalSeconds = duration;
+        this.state.remainingSeconds = Math.min(this.state.remainingSeconds, duration);
       } else {
         this.setMode(this.state.mode, false);
       }
       
       this.closeSettings();
       
+      // Show toast
       const toast = document.createElement('div');
       toast.textContent = 'Settings saved';
       toast.className = 'toast';
       document.body.appendChild(toast);
-      setTimeout(() => { toast.remove(); }, 2400);
+      setTimeout(() => toast.remove(), 2400);
       
-      if ('Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission();
-      }
+      'Notification' in window && Notification.permission === 'default' && Notification.requestPermission();
     },
     updateCurrentModeDuration() {
       const modeSettings = {
