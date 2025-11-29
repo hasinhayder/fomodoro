@@ -10,6 +10,13 @@ function pomodoroApp() {
     hateSliders: false
   };
 
+  const NATURE_THEMES = ['mint', 'meadow', 'emerald', 'forest'];
+  const FAVICON_PATHS = {
+    work: 'favicons/work-orange.svg',
+    short: 'favicons/short-green.svg',
+    long: 'favicons/long-purple.svg'
+  };
+
   const loadSettings = () => {
     try {
       const saved = JSON.parse(localStorage.getItem('pomodoro-settings')) || {};
@@ -20,6 +27,11 @@ function pomodoroApp() {
   };
 
   const settings = loadSettings();
+  const originalTitle = document.title;
+
+  const formatTime = (seconds) => String(Math.floor(seconds / 60)).padStart(2, '0');
+  const formatSeconds = (seconds) => String(Math.floor(seconds % 60)).padStart(2, '0');
+  const getRandomNatureTheme = () => NATURE_THEMES[Math.floor(Math.random() * NATURE_THEMES.length)];
 
   return {
     DEFAULTS,
@@ -36,14 +48,14 @@ function pomodoroApp() {
     quoteFadeClass: '',
     currentQuoteIndex: 0,
     quoteTimer: null,
-    originalTitle: document.title,
+    originalTitle,
 
     // Computed properties
     get minutes() {
-      return String(Math.floor(this.state.remainingSeconds / 60)).padStart(2, '0');
+      return formatTime(this.state.remainingSeconds);
     },
     get seconds() {
-      return String(Math.floor(this.state.remainingSeconds % 60)).padStart(2, '0');
+      return formatSeconds(this.state.remainingSeconds);
     },
     get progressPercent() {
       return Math.min(100, ((this.state.totalSeconds - this.state.remainingSeconds) / this.state.totalSeconds) * 100);
@@ -59,11 +71,9 @@ function pomodoroApp() {
     },
     get sessionDots() {
       const count = this.settings.sessionsUntilLong || 4;
-      const dots = [];
-      for (let i = 0; i < count; i++) {
-        dots.push({ active: i < (this.state.completedSessions % count) });
-      }
-      return dots;
+      return Array.from({ length: count }, (_, i) => ({ 
+        active: i < (this.state.completedSessions % count) 
+      }));
     },
     get currentQuote() {
       if (!this.QUOTES || this.QUOTES.length === 0) return { text: '', author: '' };
@@ -141,20 +151,17 @@ function pomodoroApp() {
     setMode(mode, resetTime = true) {
       this.state.mode = mode;
       document.body.dataset.mode = mode;
+      
       if (mode === 'work') {
         this.state.totalSeconds = this.settings.work * 60;
         document.body.className = `theme-${this.settings.theme}`;
-      } else if (mode === 'short') {
-        this.state.totalSeconds = this.settings.short * 60;
-        const natureThemes = ['mint', 'meadow', 'emerald', 'forest'];
-        const randomTheme = natureThemes[Math.floor(Math.random() * natureThemes.length)];
-        document.body.className = `theme-${randomTheme}`;
       } else {
-        this.state.totalSeconds = this.settings.long * 60;
-        const natureThemes = ['mint', 'meadow', 'emerald', 'forest'];
-        const randomTheme = natureThemes[Math.floor(Math.random() * natureThemes.length)];
-        document.body.className = `theme-${randomTheme}`;
+        this.state.totalSeconds = mode === 'short' ? 
+          this.settings.short * 60 : 
+          this.settings.long * 60;
+        document.body.className = `theme-${getRandomNatureTheme()}`;
       }
+      
       // Only reset remaining seconds if we want to start a fresh session
       if (resetTime) {
         this.state.remainingSeconds = this.state.totalSeconds;
@@ -231,54 +238,44 @@ function pomodoroApp() {
       this.saveSettingsToStorage(this.settings);
       this.applyTheme();
       
-      // Always update the current mode with new settings
-      // If timer is running, update totalSeconds but preserve remainingSeconds
+      const modeSettings = {
+        work: this.settings.work,
+        short: this.settings.short,
+        long: this.settings.long
+      };
+      
       if (this.state.running) {
-        if (this.state.mode === 'work') {
-          this.state.totalSeconds = this.settings.work * 60;
-        } else if (this.state.mode === 'short') {
-          this.state.totalSeconds = this.settings.short * 60;
-        } else if (this.state.mode === 'long') {
-          this.state.totalSeconds = this.settings.long * 60;
-        }
-        // Ensure remainingSeconds doesn't exceed the new totalSeconds
-        if (this.state.remainingSeconds > this.state.totalSeconds) {
-          this.state.remainingSeconds = this.state.totalSeconds;
-        }
+        this.state.totalSeconds = (modeSettings[this.state.mode] || 25) * 60;
+        this.state.remainingSeconds = Math.min(this.state.remainingSeconds, this.state.totalSeconds);
       } else {
-        // If timer is not running, update mode with new settings
         this.setMode(this.state.mode, false);
       }
       
       this.closeSettings();
-      // Toast
+      
       const toast = document.createElement('div');
       toast.textContent = 'Settings saved';
       toast.className = 'toast';
       document.body.appendChild(toast);
       setTimeout(() => { toast.remove(); }, 2400);
+      
       if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
       }
     },
     updateCurrentModeDuration() {
-      // Update the totalSeconds for the current mode based on the new slider value
-      if (this.state.mode === 'work') {
-        this.state.totalSeconds = this.settings.work * 60;
-      } else if (this.state.mode === 'short') {
-        this.state.totalSeconds = this.settings.short * 60;
-      } else if (this.state.mode === 'long') {
-        this.state.totalSeconds = this.settings.long * 60;
-      }
+      const modeSettings = {
+        work: this.settings.work,
+        short: this.settings.short,
+        long: this.settings.long
+      };
       
-      // If timer is not running, update remainingSeconds to match the new totalSeconds
+      this.state.totalSeconds = (modeSettings[this.state.mode] || 25) * 60;
+      
       if (!this.state.running) {
         this.state.remainingSeconds = this.state.totalSeconds;
       } else {
-        // If timer is running, ensure remainingSeconds doesn't exceed the new totalSeconds
-        if (this.state.remainingSeconds > this.state.totalSeconds) {
-          this.state.remainingSeconds = this.state.totalSeconds;
-        }
+        this.state.remainingSeconds = Math.min(this.state.remainingSeconds, this.state.totalSeconds);
       }
     },
     resetSettings() {
@@ -290,22 +287,15 @@ function pomodoroApp() {
       }
     },
     updateTitleWithTimer() {
+      const favicon = document.getElementById('dynamic-favicon');
+      
       if (this.state.running) {
         document.title = `${this.minutes}:${this.seconds} - ${this.originalTitle}`;
-
-        const favicon = document.getElementById('dynamic-favicon');
         if (favicon) {
-          const paths = {
-            work: 'favicons/work-orange.svg',
-            short: 'favicons/short-green.svg',
-            long: 'favicons/long-purple.svg'
-          };
-          favicon.href = paths[this.state.mode] || '';
+          favicon.href = FAVICON_PATHS[this.state.mode] || '';
         }
       } else {
         document.title = this.originalTitle;
-
-        const favicon = document.getElementById('dynamic-favicon');
         if (favicon) {
           favicon.href = 'favicons/pomodoro-default.svg';
         }
@@ -314,41 +304,24 @@ function pomodoroApp() {
     handleGlobalKeydown(e) {
       try {
         const active = document.activeElement;
-        const tag = (active && active.tagName) ? active.tagName.toUpperCase() : '';
-        const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (active && active.isContentEditable);
-        if (isTyping) return; // allow normal typing (including spaces)
+        const isTyping = ['INPUT', 'TEXTAREA', 'SELECT'].includes(active?.tagName) || active?.isContentEditable;
+        if (isTyping) return;
 
-        // Space toggles start/pause when not typing in a field
-        const keyIsSpace = e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar' || e.which === 32 || e.keyCode === 32;
-        if (keyIsSpace) {
+        const key = e.code || e.key;
+        const modifiers = { ctrl: e.ctrlKey || e.metaKey, noMod: !e.ctrlKey && !e.metaKey };
+        
+        const keyActions = {
+          'Space': () => this.toggleStartPause(),
+          'KeyK': () => modifiers.ctrl && this.toggleSettings(),
+          'KeyR': () => modifiers.noMod && this.resetTimer(),
+          'KeyS': () => modifiers.noMod && this.skipTimer(),
+          'Escape': () => this.closeSettings()
+        };
+        
+        const action = keyActions[key];
+        if (action?.()) {
           e.preventDefault();
           e.stopPropagation();
-          this.toggleStartPause();
-          return;
-        }
-
-        // Cmd/Ctrl+K to open settings (global)
-        if ((e.ctrlKey || e.metaKey) && (e.code === 'KeyK' || e.key === 'k' || e.key === 'K')) {
-          e.preventDefault();
-          e.stopPropagation();
-          this.toggleSettings();
-          return;
-        }
-
-        if (e.code === 'KeyR' && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault();
-          this.resetTimer();
-          return;
-        }
-
-        if (e.code === 'KeyS' && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault();
-          this.skipTimer();
-          return;
-        }
-
-        if (e.key === 'Escape') {
-          this.closeSettings();
         }
       } catch (err) {
         console.warn('Keyboard handler error:', err);
